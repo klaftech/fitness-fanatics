@@ -3,14 +3,14 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, abort, make_response
+from flask import request, abort, make_response, jsonify
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import RoutineItem
-# Add your model imports
-
+from models import RoutineItem, User
+from werkzeug.security import generate_password_hash, check_password_hash
+app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'  
 
 # Views go here!
 
@@ -18,7 +18,28 @@ from models import RoutineItem
 def index():
     return '<h1>Project Server</h1>'
 
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        password = data.get('password')
 
+        if not name or not email or not password:
+            return {"error": "All fields are required"}, 400
+
+        if User.query.filter_by(email=email).first():
+            return {"error": "Email already in use"}, 400
+
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        new_user = User(name=name, email=email, password=hashed_password)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return {"message": "User registered successfully"}, 201
+
+api.add_resource(Register, '/register')
 class RoutineItems(Resource):
     ## TODO: add validation. either with @before_request or to each method
         

@@ -1,6 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
+from flask_bcrypt import Bcrypt
 
 from config import db
 
@@ -10,6 +11,23 @@ class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     routines = db.relationship('RoutineItem', back_populates="users")
+    name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    _password_hash = db.Column(db.String, nullable=False)
+
+    @property
+    def password(self):
+        raise AttributeError('Password is not readable')
+
+    @password.setter
+    def password(self, password):
+        self._password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def verify_password(self, password):
+        return bcrypt.check_password_hash(self._password_hash, password)
+
+    def __repr__(self):
+        return f'<User {self.name}>'
 
 ## minimal testing setup for RoutineItem model
 class Exercise(db.Model, SerializerMixin):
