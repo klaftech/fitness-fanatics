@@ -5,11 +5,12 @@
 # Remote library imports
 from flask import request, abort, make_response, jsonify
 from flask_restful import Resource
+from flask_bcrypt import Bcrypt
+
 
 # Local imports
-from config import app, db, api
-from models import RoutineItem, User
-from werkzeug.security import generate_password_hash, check_password_hash
+from config import app, db, api, bcrypt
+from models import RoutineItem, User, db
 app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'  
 
 # Views go here!
@@ -31,7 +32,8 @@ class Register(Resource):
         if User.query.filter_by(email=email).first():
             return {"error": "Email already in use"}, 400
 
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
         new_user = User(name=name, email=email, password=hashed_password)
 
         db.session.add(new_user)
@@ -39,7 +41,42 @@ class Register(Resource):
 
         return {"message": "User registered successfully"}, 201
 
+
 api.add_resource(Register, '/register')
+
+
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
+
+        if not email or not password:
+            return {"error": "Email and password are required"}, 400
+
+        user = User.query.filter_by(email=email).first()
+
+        if user and bcrypt.check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            return {"message": "Logged in successfully"}, 200
+        else:
+            return {"error": "Invalid email or password"}, 401
+
+
+api.add_resource(Login, '/login')
+
+
+class Logout(Resource):
+    def post(self):
+        if 'user_id' in session:
+            session.pop('user_id', None)
+            return {"message": "Logged out successfully"}, 200
+        else:
+            return {"error": "No user is currently logged in"}, 400
+
+
+api.add_resource(Logout, '/logout')
+
 class RoutineItems(Resource):
     ## TODO: add validation. either with @before_request or to each method
         
