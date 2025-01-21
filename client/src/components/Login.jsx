@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -22,6 +22,11 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         console.log(data.message);
+
+        localStorage.setItem('userToken', data.token);
+
+        onLoginSuccess();
+
         navigate('/routine');
       } else {
         const errorData = await response.json();
@@ -30,6 +35,10 @@ function Login() {
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');
     }
+  };
+
+  const handleRegisterRedirect = () => {
+    navigate('/signup'); 
   };
 
   return (
@@ -56,6 +65,9 @@ function Login() {
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Login</button>
+        <button type="button" onClick={handleRegisterRedirect}>
+          Register Account
+        </button>
       </form>
     </div>
   );
