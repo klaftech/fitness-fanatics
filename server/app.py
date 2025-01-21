@@ -13,12 +13,6 @@ from config import app, db, api, bcrypt
 from models import RoutineItem, User, db
 app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'  
 
-# Views go here!
-
-@app.route('/')
-def index():
-    return '<h1>Project Server</h1>'
-
 class Register(Resource):
     def post(self):
         data = request.get_json()
