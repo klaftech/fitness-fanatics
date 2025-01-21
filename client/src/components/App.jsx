@@ -1,6 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import ComingSoon from './ComingSoon.jsx'
 import Dashboard from './Dashboard.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
