@@ -1,6 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
+from sqlalchemy.ext.hybrid import hybrid_property
 from flask_bcrypt import Bcrypt
 
 from config import db, bcrypt
@@ -15,7 +16,7 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     _password = db.Column(db.String, nullable=False)
 
-    @property
+    @hybrid_property
     def password(self):
         raise AttributeError('Password is not readable')
 
