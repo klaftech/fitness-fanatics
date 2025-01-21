@@ -4,6 +4,8 @@ import Dashboard from './Dashboard.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <> 
