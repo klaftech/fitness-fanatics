@@ -3,7 +3,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from flask_bcrypt import Bcrypt
 
-from config import db
+from config import db, bcrypt
 
 
 ## minimal testing setup for RoutineItem model
@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     routines = db.relationship('RoutineItem', back_populates="users")
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    _password_hash = db.Column(db.String, nullable=False)
+    _password = db.Column(db.String, nullable=False)
 
     @property
     def password(self):
@@ -21,10 +21,10 @@ class User(db.Model, SerializerMixin):
 
     @password.setter
     def password(self, password):
-        self._password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+        self._password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def verify_password(self, password):
-        return bcrypt.check_password_hash(self._password_hash, password)
+        return bcrypt.check_password_hash(self._password, password)
 
     def __repr__(self):
         return f'<User {self.name}>'
