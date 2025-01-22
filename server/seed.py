@@ -54,7 +54,12 @@ if __name__ == '__main__':
             #     minutes_to_complete=randint(15,90),
             # )
 
-            exercise = Exercise()
+            exercise = Exercise(
+                 name=fake.first_name(), 
+                 muscle_group=fake.first_name(),
+                 difficulty_level=randint(0,9),
+                 image_url="1"
+            )
             #exercise.user = rc(users)
 
             exercises.append(exercise)
@@ -66,14 +71,6 @@ if __name__ == '__main__':
         print("Creating routines...")
         routines = []
         for i in range(20):
-            #instructions = fake.paragraph(nb_sentences=8)
-            
-            # recipe = Exercise(
-            #     title=fake.sentence(),
-            #     instructions=instructions,
-            #     minutes_to_complete=randint(15,90),
-            # )
-
             routine = RoutineItem(
                 initial_weight=randint(15,90),
                 current_weight=randint(15,90),
