@@ -2,12 +2,10 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
-from flask_bcrypt import Bcrypt
 
 from config import db, bcrypt
 
 
-## minimal testing setup for RoutineItem model
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
