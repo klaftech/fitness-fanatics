@@ -66,6 +66,46 @@ class Logout(Resource):
 
 
 
+class Account(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return {"error": "User not logged in"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        return make_response({
+            "name": user.name,
+            "email": user.email
+        }, 200)
+
+    def put(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return {"error": "User not logged in"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        data = request.get_json()
+        if 'name' in data:
+            user.name = data['name']
+        if 'email' in data:
+            user.email = data['email']
+        if 'password' in data:
+            user.password = data['password']  
+
+        try:
+            db.session.commit()
+            return make_response({"message": "Account updated successfully"}, 200)
+        except Exception as e:
+            return make_response({"error": "Could not update account"}, 500)
+
+api.add_resource(Account, '/api/account')
+
 class RoutineItems(Resource):
     ## TODO: add validation. either with @before_request or to each method
         
