@@ -1,54 +1,48 @@
-import {Routes, Route, Navigate} from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import ComingSoon from './ComingSoon.jsx'
 import Dashboard from './Dashboard.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
-import Account from './Account.jsx'  
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { use } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Account from './Account.jsx'
 
 function App() {
-  // state to track whether the user is authenticated
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  //const [userData, setUserData] = useState({name:"test",username:"test",email:"test",id:"1"});
-  const [userData, setUserData] = useState({name:"test"})
-    
-  const [checkStorage, setCheckStorage] = useState(false);
   const navigate = useNavigate();
   
-  console.log("user data below")
-  console.log(userData['name'])
+  // state to track whether the user is authenticated
+  const [userData, setUserData] = useState({id: null, name: null, email: null})
 
   useEffect(() => {
-    const userData = localStorage.getItem('userData');
-    //console.log(localStorage.getItem('userData'))
-    if (!userData) {
-      navigate('/login');
-      //setIsAuthenticated(true);
+    const sessionUserData = {
+      id: localStorage.getItem('userId'),
+      name: localStorage.getItem('userName'),
+      email: localStorage.getItem('userEmail')
     }
-    setCheckStorage(true)
-    setUserData(userData)
+    //console.log(sessionUserData)
+    
+    if (sessionUserData.id == null) {
+      navigate('/login');
+    } else {
+      setUserData(sessionUserData)
+    }
   }, []);
 
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
 
   //if (!checkStorage) return <p>Loading storage</p>
-
   return (
     <> 
      <Routes>
-        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/login" element={<Login user={userData} setUserData={setUserData} />} />
         <Route path="/signup" element={<Register />} />
 
-        <Route path="/" element={isAuthenticated ? <Dashboard user={userData} /> : <Navigate to="/login" />} />
-        <Route path="/account" element={isAuthenticated ? <Account /> : <Navigate to="/login" />} />
-        <Route path="/routine" element={isAuthenticated ? <ComingSoon endpoint={"routine dashboard"} /> : <Navigate to="/login" />} />
-        <Route path="/edit-routine" element={isAuthenticated ? <ComingSoon endpoint={"edit-routine"} /> : <Navigate to="/login" />} />
-        <Route path="/exercises" element={isAuthenticated ? <ComingSoon endpoint={"exercises"} /> : <Navigate to="/login" />} />
+        <Route path="/" element={<Dashboard user={userData} />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/routine" element={<ComingSoon endpoint={"routine dashboard"} />} />
+        <Route path="/edit-routine" element={<ComingSoon endpoint={"edit-routine"} />} />
+        <Route path="/exercises" element={<ComingSoon endpoint={"exercises"} />} />
 
         <Route path="/logout" element={<ComingSoon endpoint={"logout"} />} />
         <Route path="/test" element={<Dashboard />}></Route>
