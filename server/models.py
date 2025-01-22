@@ -26,6 +26,7 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(self._password, password.encode('utf-8'))
 
     routines = db.relationship('RoutineItem', back_populates="user")
+    serialize_rules = ('-routines.user',)
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -35,6 +36,8 @@ class Exercise(db.Model, SerializerMixin):
     __tablename__ = "exercises"
     id = db.Column(db.Integer, primary_key=True)
     routines = db.relationship('RoutineItem', back_populates="exercise")
+
+    serialize_rules = ('-routines.exercise',)
 
 class RoutineItem(db.Model, SerializerMixin):
     __tablename__ = "routine_items"
@@ -53,8 +56,8 @@ class RoutineItem(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates="routines")
     exercise = db.relationship('Exercise', back_populates="routines")
-
-    serialize_rules = ('-user.routine','-exercise.routine')
+    
+    serialize_rules = ('-user.routines','-exercise.routines')
 
     @validates('user_id','exercise_id')
     def validate_fks(self, key, value):
