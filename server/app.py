@@ -52,7 +52,7 @@ class Login(Resource):
 
         if user and user.verify_password(password):
             session['user_id'] = user.id
-            return {"message": "Logged in successfully"}, 200
+            return make_response(user.to_dict(only=('id','email','name')), 200)
         else:
             return {"error": "Invalid email or password"}, 401
 

@@ -10,6 +10,28 @@ function Login({ onLoginSuccess }) {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    fetch('api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data['name'])
+        user = {
+            name: data['name']
+        }
+        localStorage.setItem('userData',user);
+
+        onLoginSuccess();
+
+        navigate('/');
+    })
+    .catch(error => setError(error))
+
+    /*
     try {
       const response = await fetch('api/login', {
         method: 'POST',
@@ -21,13 +43,18 @@ function Login({ onLoginSuccess }) {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.message);
-
-        localStorage.setItem('userToken', data.token);
+        //console.log(data.message);
+        console.log(data['name'])
+        // data_json = {
+        //     name: data.name,
+        //     username: data.username,
+        //     id: data.id
+        // }
+        localStorage.setItem('userData',data);
 
         onLoginSuccess();
 
-        navigate('/routine');
+        navigate('/');
       } else {
         const errorData = await response.json();
         setError(errorData.error);
@@ -35,6 +62,7 @@ function Login({ onLoginSuccess }) {
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');
     }
+    */
   };
 
   const handleRegisterRedirect = () => {

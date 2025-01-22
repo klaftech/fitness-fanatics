@@ -2,12 +2,12 @@
 import Header from './Header.jsx'
 import RoutineContainer from './RoutineContainer.jsx'
 
-const Dashboard = () => {
+const Dashboard = ({userData}) => {
     //const [count, setCount] = useState(0)
     
     return (
       <>
-        <Header/>
+        <Header userData={userData}/>
         <RoutineContainer />
       </>
     );
