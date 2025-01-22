@@ -5,6 +5,7 @@ import Dashboard from './Dashboard.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 import Account from './Account.jsx'  
+import Logout from './Logout.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { use } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +51,7 @@ function App() {
         <Route path="/edit-routine" element={isAuthenticated ? <ComingSoon endpoint={"edit-routine"} /> : <Navigate to="/login" />} />
         <Route path="/exercises" element={isAuthenticated ? <ComingSoon endpoint={"exercises"} /> : <Navigate to="/login" />} />
 
-        <Route path="/logout" element={<ComingSoon endpoint={"logout"} />} />
+        <Route path="/logout" element={<LogoutButton setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/test" element={<Dashboard />}></Route>
       </Routes>
     </>

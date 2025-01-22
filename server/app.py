@@ -69,7 +69,6 @@ class Logout(Resource):
 
 
 
-
 class Account(Resource):
     def get(self):
         user_id = session.get('user_id')
@@ -174,6 +173,7 @@ api.add_resource(Logout, '/api/logout')
 api.add_resource(RoutineItems, '/api/routines')
 api.add_resource(RoutineItemByID, '/api/routines/<int:id>')
 api.add_resource(Account, '/api/account')
+
 
 
 if __name__ == '__main__':
