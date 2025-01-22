@@ -20,10 +20,10 @@ app = Flask(
 def not_found(e):
     return render_template("index.html")
 
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False     
 app.json.compact = False                                  
+app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'
 
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
