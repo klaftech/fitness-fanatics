@@ -22,10 +22,10 @@ class User(db.Model, SerializerMixin):
 
     @password.setter
     def password(self, password):
-        self._password = bcrypt.generate_password_hash(password).decode('utf-8')
+        self._password = bcrypt.generate_password_hash(password.encode('utf-8')).decode('utf-8') 
 
     def verify_password(self, password):
-        return bcrypt.check_password_hash(self._password, password)
+        return bcrypt.check_password_hash(self._password, password.encode('utf-8'))
 
     def __repr__(self):
         return f'<User {self.name}>'

@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, abort, make_response, jsonify
+from flask import request, abort, make_response, jsonify, session
 from flask_restful import Resource
 from flask_bcrypt import Bcrypt
 
@@ -26,17 +26,14 @@ class Register(Resource):
         if User.query.filter_by(email=email).first():
             return {"error": "Email already in use"}, 400
 
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-
-        new_user = User(name=name, email=email, password=hashed_password)
+        new_user = User(name=name, email=email)
+        new_user.password = password
 
         db.session.add(new_user)
         db.session.commit()
 
         return {"message": "User registered successfully"}, 201
 
-
-api.add_resource(Register, '/register')
 
 
 class Login(Resource):
@@ -50,14 +47,12 @@ class Login(Resource):
 
         user = User.query.filter_by(email=email).first()
 
-        if user and bcrypt.check_password_hash(user.password, password):
+        if user and user.verify_password(password):
             session['user_id'] = user.id
             return {"message": "Logged in successfully"}, 200
         else:
             return {"error": "Invalid email or password"}, 401
 
-
-api.add_resource(Login, '/login')
 
 
 class Logout(Resource):
@@ -69,7 +64,7 @@ class Logout(Resource):
             return {"error": "No user is currently logged in"}, 400
 
 
-api.add_resource(Logout, '/logout')
+
 
 class Account(Resource):
     def get(self):
@@ -140,7 +135,7 @@ class RoutineItems(Resource):
         db.session.commit()
         return make_response(new_record.to_dict(), 201)
     
-api.add_resource(RoutineItems, '/routines')
+
 
 class RoutineItemByID(Resource):
     ## TODO: add validation. either with @before_request or to each method
@@ -170,10 +165,12 @@ class RoutineItemByID(Resource):
         db.session.commit()
         return make_response("", 204)
     
-api.add_resource(RoutineItemByID, '/routines/<int:id>')
 
-
-
+api.add_resource(Register, '/api/register')
+api.add_resource(Login, '/api/login')
+api.add_resource(Logout, '/api/logout')
+api.add_resource(RoutineItems, '/api/routines')
+api.add_resource(RoutineItemByID, '/api/routines/<int:id>')
 
 
 if __name__ == '__main__':
