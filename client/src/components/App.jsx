@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import '../assets/css/theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ComingSoon from './ComingSoon.jsx'
@@ -9,6 +10,7 @@ import Login from './Login.jsx'
 import Logout from './Logout.jsx';
 import Register from './Register.jsx'
 import Account from './Account.jsx'
+import header from '../assets/header.png'
 
 function App() {
   const navigate = useNavigate();
@@ -43,6 +45,7 @@ function App() {
   //if (!checkStorage) return <p>Loading storage</p>
   return (
     <> 
+     <img src={header} alt="Header" style={{ width: '100%', height: 'auto' }} />
      <Routes>
         <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/signup" element={<Register />} />

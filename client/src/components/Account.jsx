@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Account() {
   const [userData, setUserData] = useState({
@@ -10,7 +11,8 @@ function Account() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  
+  const navigate = useNavigate(); // Use the useNavigate hook
+
   useEffect(() => {
     fetch('/api/account', {
       method: 'GET',
@@ -58,6 +60,10 @@ function Account() {
         setIsEditing(false);
       })
       .catch((err) => setError(err.message));
+  };
+
+  const handleReturnToDashboard = () => {
+    navigate('/'); // Navigate to the dashboard
   };
 
   return (
@@ -112,6 +118,7 @@ function Account() {
           <p><strong>Email:</strong> {userData.email}</p>
           <p><strong>Password:</strong> ********</p>
           <button onClick={() => setIsEditing(true)}>Edit Account</button>
+          <button onClick={handleReturnToDashboard}>Return to Dashboard</button>
         </div>
       )}
     </div>

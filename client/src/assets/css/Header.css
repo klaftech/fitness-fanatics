@@ -1,26 +1,9 @@
-/*
-:root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-  
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-*/
-
 .header-row {
-    padding-bottom: 20px;
+    padding-bottom: var(--spacing-medium); /* Use theme variable for spacing */
 }
 
 .header-container {
-    margin: 2%;
+    margin: var(--spacing-small);
 }
 
 .header-row:after {
@@ -31,40 +14,43 @@
 
 .column {
     float: left;
-    /* padding: 2px; */
 }
-  
+
 .left.welcome {
     width: auto;
     height: 40px;
     overflow: hidden;
-    background-color: lightgrey;
-    padding: 1%;
-    font-size: 1.4em;
+    background-color: var(--background-color); /* Use theme variable for background color */
+    padding: var(--spacing-small);
+    font-size: var(--font-size-large); /* Use theme variable for font size */
     text-align: center;
+    color: var(--text-color); /* Use theme variable for text color */
+    border-radius: var(--border-radius); /* Use theme variable for border radius */
 }
-
-
 
 .center {
     width: 50%;
     height: 40px;
 }
-  
+
 .right.username {
     width: 10%;
     height: 40px;
-    background-color: lightgrey;
+    background-color: var(--secondary-color); /* Use theme variable for background color */
     text-align: center;
-    padding: 1%;
+    padding: var(--spacing-small);
+    color: white; /* Ensure text is readable on a dark background */
+    border-radius: var(--border-radius);
 }
 
 .left.menu {
     width: 50%;
     height: 20px;
-    background-color: lightgray;
-    padding-top: 20px;
-    padding-left: 30px;
+    background-color: var(--background-color);
+    padding-top: var(--spacing-medium);
+    padding-left: var(--spacing-large);
+    color: var(--text-color);
+    font-family: var(--font-family); /* Use theme variable for font family */
 }
 
 .right.menu-buttons {
@@ -72,5 +58,7 @@
 }
 
 .bar {
-    background-color: lightgrey;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow); /* Use theme variable for shadow effect */
 }
