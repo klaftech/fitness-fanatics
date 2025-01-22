@@ -3,11 +3,8 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
 from config import db, bcrypt
 
-
-## minimal testing setup for RoutineItem model
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +30,7 @@ class User(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<User {self.name}>'
 
-## minimal testing setup for RoutineItem model
+
 class Exercise(db.Model, SerializerMixin):
     __tablename__ = "exercises"
     id = db.Column(db.Integer, primary_key=True)
@@ -43,8 +40,6 @@ class Exercise(db.Model, SerializerMixin):
     image_url = db.Column(db.String)
 
     routines = db.relationship('RoutineItem', back_populates="exercise")
-
-
     serialize_rules = ('-routines.exercise',)
 
     def __repr__(self):
@@ -68,7 +63,7 @@ class RoutineItem(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates="routines")
     exercise = db.relationship('Exercise', back_populates="routines")
-    
+
     serialize_rules = ('-user.routines','-exercise.routines')
 
     @validates('user_id','exercise_id')

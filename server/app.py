@@ -3,10 +3,8 @@
 # Standard library imports
 
 # Remote library imports
-from flask import Flask, request, abort, make_response, jsonify, session
-from flask_restful import Resource, Api
-from flask_bcrypt import Bcrypt
-
+from flask import request, abort, make_response, session
+from flask_restful import Resource
 
 # Local imports
 from config import app, db, api, bcrypt
@@ -110,10 +108,6 @@ class Account(Resource):
         except Exception as e:
             return make_response({"error": "Could not update account"}, 500)
 
-
-
-if __name__ == '__main__':
-    app.run(port=5555, debug=True)
 class RoutineItems(Resource):
     ## TODO: add validation. either with @before_request or to each method
         
