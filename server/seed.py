@@ -9,6 +9,45 @@ from models import db, User, Exercise, RoutineItem
 
 fake = Faker()
 
+workout_exercises = [
+    "Barbell Bench Press",
+    "Barbell Deadlift",
+    "Burpees",
+    "Chest Dips",
+    "Deadlift",
+    "Dumbbell Bench Press",
+    "Dumbbell Lunges",
+    "Dumbbell Rows",
+    "Face Pulls",
+    "Incline Bench Press",
+    "Incline Dumbbell Curls",
+    "Kettlebell Swings",
+    "Lateral Raises",
+    "Leg Press",
+    "Mountain Climbers",
+    "Overhead Press",
+    "Pull-ups",
+    "Push-ups",
+    "Seated Cable Rows",
+    "Squats",
+    "Tricep Dips",
+    "Upright Row"
+]
+
+muscle_groups = [
+    "Glutes",
+    "Back",
+    "Chest",
+    "Shoulders",
+    "Quadriceps",
+    "Hamstrings",
+    "Calves",
+    "Triceps",
+    "Biceps",
+    "Abs",
+    "Forearms"
+]
+
 if __name__ == '__main__':
     with app.app_context():
 
@@ -37,7 +76,7 @@ if __name__ == '__main__':
                 email=fake.email(),
             )
 
-            user.password = 'abc'
+            user.password = 'aaa'
 
             users.append(user)
 
@@ -46,22 +85,12 @@ if __name__ == '__main__':
         print("Creating exercises...")
         exercises = []
         for i in range(20):
-            #instructions = fake.paragraph(nb_sentences=8)
-            
-            # recipe = Exercise(
-            #     title=fake.sentence(),
-            #     instructions=instructions,
-            #     minutes_to_complete=randint(15,90),
-            # )
-
             exercise = Exercise(
-                 name=fake.first_name(), 
-                 muscle_group=fake.first_name(),
+                 name=rc(workout_exercises), 
+                 muscle_group=rc(muscle_groups),
                  difficulty_level=randint(0,9),
                  image_url="1"
             )
-            #exercise.user = rc(users)
-
             exercises.append(exercise)
 
         db.session.add_all(exercises)
