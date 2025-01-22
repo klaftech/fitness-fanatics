@@ -108,7 +108,7 @@ if __name__ == '__main__':
                 initial_sets=randint(15,90),
                 current_sets=randint(15,90),
                 priority=randint(0,10),
-                day_of_the_week=randint(0,7),
+                day_of_the_week=randint(1,8),
             )
             routine.user = rc(users)
             routine.exercise = rc(exercises)
