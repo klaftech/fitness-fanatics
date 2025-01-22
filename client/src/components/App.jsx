@@ -44,7 +44,7 @@ function App() {
         <Route path="/edit-routine" element={<ComingSoon endpoint={"edit-routine"} />} />
         <Route path="/exercises" element={<ComingSoon endpoint={"exercises"} />} />
 
-        <Route path="/logout" element={<ComingSoon endpoint={"logout"} />} />
+        <Route path="/logout" element={<LogoutButton setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/test" element={<Dashboard />}></Route>
       </Routes>
     </>
