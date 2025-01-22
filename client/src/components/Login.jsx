@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login({ user, setUserData }) {
+function Login({ userData, setUserData }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   //redirect to / if already logged in
-  if(user.id !== null){
+  if(userData.id !== null){
     navigate('/'); 
   }
   

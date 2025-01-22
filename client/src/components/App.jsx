@@ -35,10 +35,10 @@ function App() {
   return (
     <> 
      <Routes>
-        <Route path="/login" element={<Login user={userData} setUserData={setUserData} />} />
+        <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/signup" element={<Register />} />
 
-        <Route path="/" element={<Dashboard user={userData} />} />
+        <Route path="/" element={<Dashboard userData={userData} />} />
         <Route path="/account" element={<Account />} />
         <Route path="/routine" element={<ComingSoon endpoint={"routine dashboard"} />} />
         <Route path="/edit-routine" element={<ComingSoon endpoint={"edit-routine"} />} />

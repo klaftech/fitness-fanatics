@@ -1,10 +1,10 @@
 import MenuTop from './MenuTop';
 import MenuButtom from './MenuBottom';
 
-const Header = ({user}) => {
+const Header = ({userData}) => {
 
-    const name = user.name
-    const username = user.email
+    const name = userData.name
+    const username = userData.email
     
     return (
         <div style={{'margin':'2%'}} >
