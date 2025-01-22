@@ -1,22 +1,24 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import '../assets/css/theme.css'; // Ensure the path is correct
 
-const MenuButtom = () => {
+const MenuBottom = () => {
     return (
-        <Navbar bg="secondary" data-bs-theme="secondary">
+        <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="">Menu</Navbar.Brand>
-                <Nav>
+                <Navbar.Brand href="" className="text-white">Menu</Navbar.Brand>
+                <Nav className="ml-auto">
                     <Nav.Link href="exercises">
-                        <Button variant="light">View All Exercises</Button>
+                        <Button variant="outline-light" className="menu-btn">View All Exercises</Button>
                     </Nav.Link>
                     <Nav.Link href="account">
-                        <Button variant="light">Edit Account Info</Button>
+                        <Button variant="outline-light" className="menu-btn">Edit Account Info</Button>
                     </Nav.Link>
                     <Nav.Link href="logout">
-                        <Button variant="light">Logout</Button>
+                        <Button variant="outline-light" className="menu-btn">Logout</Button>
                     </Nav.Link>
                 </Nav>
             </Container>
@@ -24,4 +26,4 @@ const MenuButtom = () => {
     );
 }
 
-export default MenuButtom;
+export default MenuBottom;
