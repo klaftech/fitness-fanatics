@@ -59,6 +59,9 @@ function Account() {
       })
       .catch((err) => setError(err.message));
   };
+  const handleReturnToDashboard = () => {
+    navigate('/');
+  };
 
   return (
     <div>
@@ -112,6 +115,7 @@ function Account() {
           <p><strong>Email:</strong> {userData.email}</p>
           <p><strong>Password:</strong> ********</p>
           <button onClick={() => setIsEditing(true)}>Edit Account</button>
+          <button onClick={handleReturnToDashboard}>Return to Dashboard</button>
         </div>
       )}
     </div>
