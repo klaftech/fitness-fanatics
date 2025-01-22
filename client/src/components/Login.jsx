@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login({ onLoginSuccess }) {
+function Login({ userData, setUserData }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  //redirect to / if already logged in
+  if(userData.id !== null){
+    navigate('/'); 
+  }
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -19,13 +24,16 @@ function Login({ onLoginSuccess }) {
       })
     .then(response => response.json())
     .then(data => {
-        console.log(data['name'])
-        user = {
-            name: data['name']
-        }
-        localStorage.setItem('userData',user);
+        localStorage.setItem('userName', data.name);
+        localStorage.setItem('userEmail', data.email)
+        localStorage.setItem('userId', data.id)
 
-        onLoginSuccess();
+        const sessionUserData = {
+          id: data.id,
+          name: data.name,
+          email: data.email
+        }
+        setUserData(sessionUserData)
 
         navigate('/');
     })
