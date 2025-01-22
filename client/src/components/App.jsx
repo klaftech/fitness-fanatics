@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ComingSoon from './ComingSoon.jsx'
 import Dashboard from './Dashboard.jsx'
 import Login from './Login.jsx'
+import Logout from './Logout.jsx';
 import Register from './Register.jsx'
 import Account from './Account.jsx'
 
@@ -13,7 +14,15 @@ function App() {
   const navigate = useNavigate();
   
   // state to track whether the user is authenticated
-  const [userData, setUserData] = useState({id: null, name: null, email: null})
+  const defaultUserData = {id: null, name: null, email: null}
+  const [userData, setUserData] = useState(defaultUserData)
+
+  const handleLogout = () => {
+      localStorage.removeItem("userId");
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("userName");
+      setUserData(defaultUserData)
+  }
 
   useEffect(() => {
     const sessionUserData = {
@@ -21,9 +30,9 @@ function App() {
       name: localStorage.getItem('userName'),
       email: localStorage.getItem('userEmail')
     }
-    //console.log(sessionUserData)
+    console.log(sessionUserData)
     
-    if (sessionUserData.id == null) {
+    if (sessionUserData.id == null || sessionUserData.id == "undefined") {
       navigate('/login');
     } else {
       setUserData(sessionUserData)
@@ -44,7 +53,7 @@ function App() {
         <Route path="/edit-routine" element={<ComingSoon endpoint={"edit-routine"} />} />
         <Route path="/exercises" element={<ComingSoon endpoint={"exercises"} />} />
 
-        <Route path="/logout" element={<LogoutButton setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
         <Route path="/test" element={<Dashboard />}></Route>
       </Routes>
     </>

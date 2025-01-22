@@ -1,16 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import ActionButton from "./ActionButton.jsx";
 
-const Logout = ({ setIsAuthenticated }) => {
+const Logout = ({ handleLogout }) => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
+  const handleLogoutClick = async () => {
     try {
       const response = await fetch("/api/logout", { method: "POST", credentials: "include" });
 
       if (response.ok) {
-        localStorage.removeItem("userData"); 
-        setIsAuthenticated(false);  
+        handleLogout()
         navigate("/login");  
       } else {
         console.error("Logout failed");
@@ -20,7 +19,8 @@ const Logout = ({ setIsAuthenticated }) => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  handleLogoutClick()
+  //return <ActionButton variant="secondary" title="Logout" onClick={handleLogoutClick} />;
 };
 
 export default Logout;
