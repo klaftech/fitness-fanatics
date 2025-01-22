@@ -7,7 +7,7 @@ const Dashboard = ({userData}) => {
     
     return (
       <>
-        <Header user={userData}/>
+        <Header userData={userData}/>
         <RoutineContainer />
       </>
     );
