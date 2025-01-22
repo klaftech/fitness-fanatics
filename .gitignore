@@ -17,6 +17,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/server/migrations/*
 
 # Runtime data
 pids
