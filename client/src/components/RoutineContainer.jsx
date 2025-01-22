@@ -4,6 +4,7 @@ import RoutineFilters from './RoutineFilters.jsx'
 
 const RoutineContainer = () => {
 
+    const [routinesData, setRoutinesData] = useState()
     const [routines, setRoutines] = useState()
     const [errors, setErrors] = useState()
 
@@ -16,21 +17,37 @@ const RoutineContainer = () => {
                 }
                 return response.json()
             })
-            .then(data => setRoutines(data))
+            .then(data => {
+                setRoutines(data)
+                setRoutinesData(data)
+            })
             .catch(error => {
                 console.log(error.errors)
                 setErrors(error)
             })
-    }, [setRoutines])
+    }, [setRoutinesData])
 
 
-    const handleSortClick = (sort_field) => {
+    const handleSortClick = (sort_field, nested=null) => {
+        
         const sorted_routines = routines.toSorted((a, b) => {
-            if (a[sort_field] < b[sort_field]) return -1;
-            if (a[sort_field] > b[sort_field]) return 1;
+            const a_sort = nested != null ? a[nested][sort_field] : a[sort_field]
+            const b_sort = nested != null ? b[nested][sort_field] : b[sort_field]
+            if (a_sort < b_sort) return -1;
+            if (a_sort > b_sort) return 1;
             return 0; 
           });
         setRoutines(sorted_routines)
+    }
+
+    const handleFilterClick = (day) => {
+        let routines_response
+        if(day == "all"){
+            routines_response = routinesData
+        } else {
+            routines_response = routinesData.filter(routine => routine.day_of_the_week == day)
+        }
+        setRoutines(routines_response)
     }
 
     //show loading if fetch promises are not yet fulfilled into state
@@ -38,7 +55,7 @@ const RoutineContainer = () => {
 
     return (
         <div style={{'margin':'2%'}}>
-            <RoutineFilters handleSortSelected={handleSortClick} />
+            <RoutineFilters handleSortSelected={handleSortClick} handleFilterSelected={handleFilterClick} />
             <RoutineList routines={routines} />
         </div>
     );
