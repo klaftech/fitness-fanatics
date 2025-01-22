@@ -41,23 +41,17 @@ function App() {
     }
   }, []);
 
-
-  //if (!checkStorage) return <p>Loading storage</p>
   return (
     <> 
      <img src={header} alt="Header" style={{ width: '100%', height: 'auto' }} />
      <Routes>
-        <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
-        <Route path="/signup" element={<Register />} />
-
         <Route path="/" element={<Dashboard userData={userData} />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/routine" element={<ComingSoon endpoint={"routine dashboard"} />} />
         <Route path="/edit-routine" element={<ComingSoon endpoint={"edit-routine"} />} />
         <Route path="/exercises" element={<ComingSoon endpoint={"exercises"} />} />
-
+        <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
-        <Route path="/test" element={<Dashboard />}></Route>
+        <Route path="/signup" element={<Register />} />
       </Routes>
     </>
   )
