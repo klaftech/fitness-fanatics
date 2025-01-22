@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../assets/css/theme.css';
 
 const MenuTop = ({name, username}) => {
     return (
@@ -8,11 +9,11 @@ const MenuTop = ({name, username}) => {
             <Container fluid>
                 <Row className="pb-2 justify-content-between">
                     <Col xs={8}>
-                        <span className="p-2 bg-secondary h4">
+                        <span className="text-box h4">
                             Welcome, {name}!
                         </span>
                     </Col>
-                    <Col xs={2} className="p-2 bg-secondary text-center">{username}</Col>
+                    <Col xs={2} className="text-box h4">{username}</Col>
                 </Row>
             </Container>
         </div>

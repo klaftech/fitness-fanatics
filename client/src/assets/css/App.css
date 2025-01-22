@@ -1,21 +1,21 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--spacing-large); /* Use theme variable for consistent spacing */
   text-align: center;
 }
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: var(--spacing-medium); /* Use theme variable for consistent spacing */
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--accent-color)); /* Use accent color from theme */
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em var(--secondary-color)); /* Use secondary color from theme */
 }
 
 @keyframes logo-spin {
@@ -34,9 +34,17 @@
 }
 
 .card {
-  padding: 2em;
+  padding: var(--spacing-large); /* Use theme variable for consistent spacing */
+  border-radius: var(--border-radius); /* Use theme variable for consistent border radius */
+  box-shadow: var(--card-shadow); /* Use theme variable for consistent shadow */
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Match with theme's hover effect */
 }
 
 .read-the-docs {
-  color: #888;
+  color: var(--text-color); /* Use theme variable for text color */
 }

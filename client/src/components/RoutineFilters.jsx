@@ -1,22 +1,32 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ActionButton from './ActionButton.jsx';
+import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
 
-const RoutineFilters = ({handleSortSelected}) => {
+const RoutineFilters = ({ handleSortSelected }) => {
     return (
         <Container fluid>
-            <Row className="pb-2 justify-content-between">
+            <Row className="pb-3 justify-content-between align-items-center">
                 <Col xs={4}>
-                    My Exercise Routine:
+                    <span className="routine-title">My Exercise Routine:</span>
                 </Col>
                 <Col xs={4}></Col>
-                <Col xs={1}>Sort By:</Col>
+                <Col xs={1} className="text-end">Sort By:</Col>
                 <Col xs={1}>
-                    <ActionButton variant="secondary" title="Priority" onClick={() => handleSortSelected('priority')} />
+                    <ActionButton 
+                        style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} 
+                        title="Priority" 
+                        onClick={() => handleSortSelected('priority')} 
+                    />
                 </Col>
                 <Col xs={2}>
-                    <ActionButton variant="secondary" title="Exercise ID" onClick={() => handleSortSelected('exercise_id')} />
+                    <ActionButton 
+                        style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} 
+                        title="Exercise ID" 
+                        onClick={() => handleSortSelected('exercise_id')} 
+                    />
                 </Col>
             </Row>
         </Container>
