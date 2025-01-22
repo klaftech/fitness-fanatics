@@ -12,10 +12,8 @@ from flask_bcrypt import Bcrypt
 from config import app, db, api, bcrypt
 from models import RoutineItem, User, db
 
-app = Flask(__name__)
 app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'
-api = Api(app)
-bcrypt = Bcrypt(app)  
+#secret key move to config
 
 class Register(Resource):
     def post(self):
@@ -112,9 +110,7 @@ class Account(Resource):
         except Exception as e:
             return make_response({"error": "Could not update account"}, 500)
 
-api.add_resource(Register, '/api/register')
-api.add_resource(Login, '/api/login')
-api.add_resource(Account, '/api/account')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
@@ -183,6 +179,7 @@ api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
 api.add_resource(RoutineItems, '/api/routines')
 api.add_resource(RoutineItemByID, '/api/routines/<int:id>')
+api.add_resource(Account, '/api/account')
 
 
 if __name__ == '__main__':
