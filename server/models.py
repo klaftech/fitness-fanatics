@@ -1,11 +1,12 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
-from sqlalchemy.ext.hybrid import hybrid_property
+from flask_bcrypt import Bcrypt
 
 from config import db, bcrypt
 
 
+## minimal testing setup for RoutineItem model
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -14,16 +15,16 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     _password = db.Column(db.String, nullable=False)
 
-    @hybrid_property
+    @property
     def password(self):
         raise AttributeError('Password is not readable')
 
     @password.setter
     def password(self, password):
-        self._password = bcrypt.generate_password_hash(password.encode('utf-8')).decode('utf-8') 
+        self._password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def verify_password(self, password):
-        return bcrypt.check_password_hash(self._password, password.encode('utf-8'))
+        return bcrypt.check_password_hash(self._password, password)
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -32,7 +33,16 @@ class User(db.Model, SerializerMixin):
 class Exercise(db.Model, SerializerMixin):
     __tablename__ = "exercises"
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    muscle_group = db.Column(db.String, nullable=False)
+    difficulty_level = db.Column(db.String, nullable=False)
+    image_url = db.Column(db.String)
+
     routines = db.relationship('RoutineItem', back_populates="exercises")
+
+    def __repr__(self):
+        return f'<Exercise {self.name}, Muscle Group: {self.muscle_group}, Difficulty: {self.difficulty_level}>'
+
 
 class RoutineItem(db.Model, SerializerMixin):
     __tablename__ = "routine_items"

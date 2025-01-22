@@ -3,15 +3,19 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, abort, make_response, jsonify, session
-from flask_restful import Resource
+from flask import Flask, request, abort, make_response, jsonify, session
+from flask_restful import Resource, Api
 from flask_bcrypt import Bcrypt
 
 
 # Local imports
 from config import app, db, api, bcrypt
 from models import RoutineItem, User, db
-app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'  
+
+app = Flask(__name__)
+app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'
+api = Api(app)
+bcrypt = Bcrypt(app)  
 
 class Register(Resource):
     def post(self):
@@ -29,10 +33,13 @@ class Register(Resource):
         new_user = User(name=name, email=email)
         new_user.password = password
 
-        db.session.add(new_user)
-        db.session.commit()
-
-        return {"message": "User registered successfully"}, 201
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            return {"message": "User registered successfully"}, 201
+        except Exception as e:
+            db.session.rollback()
+            return {"error": "An unexpected error occurred. Please try again."}, 500
 
 
 
@@ -52,6 +59,7 @@ class Login(Resource):
             return {"message": "Logged in successfully"}, 200
         else:
             return {"error": "Invalid email or password"}, 401
+
 
 
 
@@ -104,8 +112,12 @@ class Account(Resource):
         except Exception as e:
             return make_response({"error": "Could not update account"}, 500)
 
+api.add_resource(Register, '/api/register')
+api.add_resource(Login, '/api/login')
 api.add_resource(Account, '/api/account')
 
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
 class RoutineItems(Resource):
     ## TODO: add validation. either with @before_request or to each method
         
