@@ -36,6 +36,7 @@ function App() {
         <Route path="/exercises" element={isAuthenticated ? <ComingSoon endpoint={"exercises"} /> : <Navigate to="/login" />} />
 
         <Route path="/logout" element={<ComingSoon endpoint={"logout"} />} />
+        <Route path="/test" element={<Dashboard />}></Route>
       </Routes>
     </>
   )

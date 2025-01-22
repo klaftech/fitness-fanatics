@@ -26,6 +26,9 @@ class User(db.Model, SerializerMixin):
     def verify_password(self, password):
         return bcrypt.check_password_hash(self._password, password)
 
+    routines = db.relationship('RoutineItem', back_populates="user")
+    serialize_rules = ('-routines.user',)
+
     def __repr__(self):
         return f'<User {self.name}>'
 
@@ -33,12 +36,9 @@ class User(db.Model, SerializerMixin):
 class Exercise(db.Model, SerializerMixin):
     __tablename__ = "exercises"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    muscle_group = db.Column(db.String, nullable=False)
-    difficulty_level = db.Column(db.String, nullable=False)
-    image_url = db.Column(db.String)
+    routines = db.relationship('RoutineItem', back_populates="exercise")
 
-    routines = db.relationship('RoutineItem', back_populates="exercises")
+    serialize_rules = ('-routines.exercise',)
 
     def __repr__(self):
         return f'<Exercise {self.name}, Muscle Group: {self.muscle_group}, Difficulty: {self.difficulty_level}>'
@@ -59,10 +59,10 @@ class RoutineItem(db.Model, SerializerMixin):
     priority = db.Column(db.Integer)
     day_of_the_week = db.Column(db.String)
 
-    users = db.relationship('User', back_populates="routines")
-    exercises = db.relationship('Exercise', back_populates="routines")
-
-    serialize_rules = ('-users.routine','-exercises.routine')
+    user = db.relationship('User', back_populates="routines")
+    exercise = db.relationship('Exercise', back_populates="routines")
+    
+    serialize_rules = ('-user.routines','-exercise.routines')
 
     @validates('user_id','exercise_id')
     def validate_fks(self, key, value):
