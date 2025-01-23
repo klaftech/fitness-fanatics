@@ -38,3 +38,11 @@ cd client
 5. Install Node.js and run
 npm install
 npm run dev
+
+
+## Walkthrough
+![Fitness Fanatics Walkthrough 1](<client/src/assets/Fitfanatics video1.gif>)
+
+![Fitness Fanatics Walkthrough 2](<client/src/assets/Fitfanatics video2.gif>)
+
+![Fitness Fanatics Walkthrough 3](<client/src/assets/Fitfanatics video3.gif>)
