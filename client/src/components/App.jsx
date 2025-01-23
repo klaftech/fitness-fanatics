@@ -51,7 +51,7 @@ function App() {
         <Route path="/" element={<LoggedInContainer userData={userData}><RoutineContainer /></LoggedInContainer>} />
         <Route path="/account" element={<LoggedInContainer userData={userData}><Account /></LoggedInContainer>} />
         <Route path="/edit-routine/:id" element={<LoggedInContainer userData={userData}><EditRoutineForm /></LoggedInContainer>} />
-        <Route path="/exercises" element={<LoggedInContainer userData={userData}><ExerciseContainer /></LoggedInContainer>} />
+        <Route path="/exercises" element={<LoggedInContainer userData={userData}><ExerciseContainer userData={userData}/></LoggedInContainer>} />
         <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
         <Route path="/signup" element={<Register />} />

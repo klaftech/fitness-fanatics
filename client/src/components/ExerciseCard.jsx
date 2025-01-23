@@ -4,12 +4,40 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
 
-const ExerciseCard = ({ exercise, handleRoutineItemCreation }) => {
-    
+const ExerciseCard = ({ exercise, userData }) => {
+    const navigate = useNavigate();
+
     const handleButtonClick = () => {
-        console.log('button clicked');
+        fetch('api/routines', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({user_id:parseInt(userData.id),
+                                exercise_id:exercise.id,
+                                initial_weight:1,
+                                current_weight:1,
+                                initial_reps:1,
+                                current_reps:1,
+                                initial_sets:1,
+                                current_sets:1,
+                                priority:1,
+                                day_of_the_week:1
+                            }),
+          })
+        .then((response) => {
+            if (response.status === 201) {
+                return response.json()
+            }
+        })
+        .then((data) => {
+            navigate('/edit-routine/'+data.id)
+        })
+        //.catch(error => setError(error))
+        //console.log('button clicked');
         //alert('button clicked');
     };
 
@@ -32,7 +60,7 @@ const ExerciseCard = ({ exercise, handleRoutineItemCreation }) => {
                     </ListGroup.Item>
                 </ListGroup>
                 <Card.Text className="d-flex justify-content-center mt-3">
-                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Add to Routine" onClick={()=>handleRoutineItemCreation(exercise.id)}/>
+                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Add to Routine" onClick={()=>handleButtonClick()}/>
                 </Card.Text>
             </Card.Body>
         </Card>

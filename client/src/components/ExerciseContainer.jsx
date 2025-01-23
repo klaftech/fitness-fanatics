@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import ExerciseList from './ExerciseList.jsx'
 
-const ExerciseContainer = () => {
+const ExerciseContainer = ({ userData }) => {
 
     const [exercises, setExercises] = useState()
     const [errors, setErrors] = useState()
@@ -30,7 +30,7 @@ const ExerciseContainer = () => {
 
     return (
         <div style={{'margin':'2%'}}>
-            <ExerciseList exercises={exercises} /*handleRoutineDelete={handleRemove}*/ />
+            <ExerciseList exercises={exercises} userData={userData}/*handleRoutineDelete={handleRemove}*/ />
         </div>
     );
 }

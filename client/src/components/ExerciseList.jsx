@@ -4,14 +4,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const ExerciseList = ({ exercises /*, handleRoutineDelete*/ }) => {
+const ExerciseList = ({ exercises, userData }) => {
     console.log(exercises)
     return (
         <Container>
             <Row>
                 {exercises && exercises.map((exercise) => 
                     <Col key={exercise.id} xs={4}>
-                        <ExerciseCard exercise={exercise} /*handleRoutineDelete={handleRoutineDelete}*/ />
+                        <ExerciseCard exercise={exercise} userData={userData}/>
                     </Col>
                 )}
             </Row>
