@@ -1,10 +1,8 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
-import { useNavigate } from 'react-router-dom';
 import '../assets/css/theme.css';
 
 const ExerciseCard = ({ exercise, userData }) => {

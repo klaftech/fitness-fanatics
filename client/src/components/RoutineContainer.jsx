@@ -13,7 +13,6 @@ const RoutineContainer = () => {
             .then((response) => {
                 if(!response.ok){
                     throw new Error('Failed to fetch routines');
-                    //setErrors(response.error)
                 }
                 return response.json()
             })
@@ -35,7 +34,6 @@ const RoutineContainer = () => {
             if (a_sort > b_sort) return 1;
             return 0; 
           });
-        //console.log(sorted_routines)
         setRoutines(sorted_routines)
     }
 

@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react'
 import ExerciseList from './ExerciseList.jsx'
 
 const ExerciseContainer = ({ userData }) => {
-
     const [exercises, setExercises] = useState()
-    const [errors, setErrors] = useState()
-
     useEffect(() => {
         fetch('api/exercises')
             .then((response) => {
@@ -16,11 +13,9 @@ const ExerciseContainer = ({ userData }) => {
             })
             .then(data => {
                 setExercises(data)
-                console.log(data)
             })
             .catch(error => {
                 console.log(error.errors)
-                setErrors(error)
             })
     }, [])
 

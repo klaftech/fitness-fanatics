@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import RoutineCard from './RoutineCard.jsx';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import RoutineCard from './RoutineCard.jsx';
 
 const RoutineList = ({ routines, handleRoutineDelete }) => {
-    
     return (
         <Container>
             <Row>

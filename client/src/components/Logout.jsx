@@ -14,7 +14,6 @@ const Logout = ({ handleLogout }) => {
             console.log("Failure to log out")
         }
     })
-
   };
 
   handleLogoutClick()
