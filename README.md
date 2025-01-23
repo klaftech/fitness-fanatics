@@ -22,9 +22,8 @@
 git clone <repository-url>
 cd <repository-folder>
 
-2. Install Python
-pipenv install
-pipenv shell
+2. Install Python 
+`$ pipenv install && pipenv shell`
 
 3. Set up the database
 flask db init
@@ -41,8 +40,8 @@ npm run dev
 
 
 ## Walkthrough
-![Fitness Fanatics Walkthrough 1](<client/src/assets/Fitfanatics video1.gif>)
+![Fitness Fanatics Walkthrough 1](<demo/Fitfanatics video1.gif>)
 
-![Fitness Fanatics Walkthrough 2](<client/src/assets/Fitfanatics video2.gif>)
+![Fitness Fanatics Walkthrough 2](<demo/Fitfanatics video2.gif>)
 
-![Fitness Fanatics Walkthrough 3](<client/src/assets/Fitfanatics video3.gif>)
+![Fitness Fanatics Walkthrough 3](<demo/Fitfanatics video3.gif>)
