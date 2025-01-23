@@ -13,13 +13,13 @@ const MenuBottom = () => {
                     <Button variant="outline-light" className="menu-btn">Home</Button>
                 </Navbar.Brand>
                 <Nav className="ml-auto">
-                    <Nav.Link href="exercises">
+                    <Nav.Link href="/exercises">
                         <Button variant="outline-light" className="menu-btn">View All Exercises</Button>
                     </Nav.Link>
-                    <Nav.Link href="account">
+                    <Nav.Link href="/account">
                         <Button variant="outline-light" className="menu-btn">Edit Account Info</Button>
                     </Nav.Link>
-                    <Nav.Link href="logout">
+                    <Nav.Link href="/logout">
                         <Button variant="outline-light" className="menu-btn">Logout</Button>
                     </Nav.Link>
                 </Nav>

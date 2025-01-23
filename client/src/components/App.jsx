@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import Login from './Login.jsx'
 import Logout from './Logout.jsx';
@@ -10,6 +9,7 @@ import LoggedInContainer from './LoggedInContainer.jsx'
 import RoutineContainer from './RoutineContainer.jsx';
 import EditRoutineForm from './EditRoutineForm.jsx';
 import ExerciseContainer from './ExerciseContainer.jsx'
+import RedirectToIndex from './RedirectToIndex.jsx';
 
 import '../assets/css/theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,13 +48,16 @@ function App() {
     <> 
      <img src={header} alt="Header" style={{ width: '100%', height: 'auto' }} />
      <Routes>
-        <Route path="/" element={<LoggedInContainer userData={userData}><RoutineContainer /></LoggedInContainer>} />
+        <Route index element={<LoggedInContainer userData={userData}><RoutineContainer /></LoggedInContainer>} />
         <Route path="/account" element={<LoggedInContainer userData={userData}><Account /></LoggedInContainer>} />
         <Route path="/edit-routine/:id" element={<LoggedInContainer userData={userData}><EditRoutineForm /></LoggedInContainer>} />
         <Route path="/exercises" element={<LoggedInContainer userData={userData}><ExerciseContainer userData={userData}/></LoggedInContainer>} />
         <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
         <Route path="/signup" element={<Register />} />
+        
+        {/* default redirect to home page */}
+        <Route path="*" element={<RedirectToIndex />} />
       </Routes>
     </>
   )
