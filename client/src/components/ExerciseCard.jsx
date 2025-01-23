@@ -1,11 +1,9 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
-import { useNavigate } from 'react-router-dom';
-import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
+import '../assets/css/theme.css';
 
 const ExerciseCard = ({ exercise, userData }) => {
     const navigate = useNavigate();
@@ -36,9 +34,6 @@ const ExerciseCard = ({ exercise, userData }) => {
         .then((data) => {
             navigate('/edit-routine/'+data.id)
         })
-        //.catch(error => setError(error))
-        //console.log('button clicked');
-        //alert('button clicked');
     };
 
     return (

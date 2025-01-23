@@ -1,9 +1,8 @@
-import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import '../assets/css/theme.css'; // Ensure the path is correct
+import '../assets/css/theme.css';
 
 const MenuBottom = () => {
     return (

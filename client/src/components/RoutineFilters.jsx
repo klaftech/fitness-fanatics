@@ -1,10 +1,9 @@
-import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ActionButton from './ActionButton.jsx';
-import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
+import '../assets/css/theme.css';
 
 const RoutineFilters = ({handleSortSelected, handleFilterSelected}) => {    
     return (

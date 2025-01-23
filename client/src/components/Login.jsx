@@ -38,39 +38,6 @@ function Login({ userData, setUserData }) {
         navigate('/');
     })
     .catch(error => setError(error))
-
-    /*
-    try {
-      const response = await fetch('api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        //console.log(data.message);
-        console.log(data['name'])
-        // data_json = {
-        //     name: data.name,
-        //     username: data.username,
-        //     id: data.id
-        // }
-        localStorage.setItem('userData',data);
-
-        onLoginSuccess();
-
-        navigate('/');
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error);
-      }
-    } catch (error) {
-      setError('An unexpected error occurred. Please try again.');
-    }
-    */
   };
 
   const handleRegisterRedirect = () => {

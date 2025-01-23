@@ -1,18 +1,10 @@
-import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
-import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
+import '../assets/css/theme.css';
 
 const RoutineCard = ({ routine, handleRoutineDelete }) => {
-    
-    const handleButtonClick = () => {
-        console.log('button clicked');
-        //alert('button clicked');
-    };
-
     const days = ["","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
     return (

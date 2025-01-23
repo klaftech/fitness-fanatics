@@ -11,9 +11,9 @@ import EditRoutineForm from './EditRoutineForm.jsx';
 import ExerciseContainer from './ExerciseContainer.jsx'
 import RedirectToIndex from './RedirectToIndex.jsx';
 
-import '../assets/css/theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import header from '../assets/header.png'
+import '../assets/css/theme.css';
+import HeaderImage from '/header.png'
 
 function App() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <> 
-     <img src={header} alt="Header" style={{ width: '100%', height: 'auto' }} />
+     <img src={HeaderImage} alt="Header" style={{ width: '100%', height: 'auto' }} />
      <Routes>
         <Route index element={<LoggedInContainer userData={userData}><RoutineContainer /></LoggedInContainer>} />
         <Route path="/account" element={<LoggedInContainer userData={userData}><Account /></LoggedInContainer>} />
@@ -55,8 +55,6 @@ function App() {
         <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
         <Route path="/signup" element={<Register />} />
-        
-        {/* default redirect to home page */}
         <Route path="*" element={<RedirectToIndex />} />
       </Routes>
     </>
