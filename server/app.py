@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
 
-# Standard library imports
-
-# Remote library imports
+# library imports
 from flask import request, abort, make_response, session
 from flask_restful import Resource
 
-# Local imports
-from config import app, db, api, bcrypt
-from models import RoutineItem, User, db
-
-app.secret_key = 'd0f124ef117b1411449d4eb7381a0749bb7bfc5715d9c47275ebf51c8d282ebd'
-#secret key move to config
+# local imports
+from config import app, db, api
+from models import User, Exercise, RoutineItem, db
 
 class Register(Resource):
     def post(self):

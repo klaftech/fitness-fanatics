@@ -2,11 +2,17 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
 import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
 
-const RoutineCard = ({ routine, handleRemove }) => {
-    const days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const RoutineCard = ({ routine }) => {
+    const handleButtonClick = () => {
+        console.log('button clicked');
+        //alert('button clicked');
+    };
+
+    const days = ["","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
     return (
         <Card className="routine-card mb-3" style={{ width: '18rem' }}>
@@ -63,9 +69,9 @@ const RoutineCard = ({ routine, handleRemove }) => {
                     </ListGroup.Item>
                 </ListGroup>
                 <Card.Text className="d-flex justify-content-center mt-3">
-                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Edit Exercise" onClick={() => console.log('Edit clicked')} />
+                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Edit Exercise" href={"edit-routine/"+routine.id} />
                     &nbsp;&nbsp;&nbsp;
-                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Remove" onClick={() => handleRemove(routine.id)} />
+                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Remove" onClick={handleButtonClick}/>
                 </Card.Text>
             </Card.Body>
         </Card>
