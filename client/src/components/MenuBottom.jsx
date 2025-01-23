@@ -9,7 +9,9 @@ const MenuBottom = () => {
     return (
         <Navbar bg="primary" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="" className="text-white">Menu</Navbar.Brand>
+                <Navbar.Brand href="/" className="text-white">
+                    <Button variant="outline-light" className="menu-btn">Home</Button>
+                </Navbar.Brand>
                 <Nav className="ml-auto">
                     <Nav.Link href="exercises">
                         <Button variant="outline-light" className="menu-btn">View All Exercises</Button>
