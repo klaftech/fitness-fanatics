@@ -8,13 +8,13 @@
 ---
 
 ## Features
-	- Exercise Selection: Browse through a list of predefined exercises, grouped by muscle groups and difficulty levels.
-	- Create custom routines for specific days of the week.
-	- Add, edit, or remove exercises from routines.
-	- Modify exercise attributes such as weight, reps, and difficulty.
-	- View all exercises in one place and filter by routine.
-	- Secure signup and login functionality.
-	- Personalized exercise data for each user.
+- Exercise Selection: Browse through a list of predefined exercises, grouped by muscle groups and difficulty levels.
+- Create custom routines for specific days of the week.
+- Add, edit, or remove exercises from routines.
+- Modify exercise attributes such as weight, reps, and difficulty.
+- View all exercises in one place and filter by routine.
+- Secure signup and login functionality.
+- Personalized exercise data for each user.
 
 ## Setup
 
