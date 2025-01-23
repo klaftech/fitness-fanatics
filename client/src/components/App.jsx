@@ -35,7 +35,7 @@ function App() {
       name: localStorage.getItem('userName'),
       email: localStorage.getItem('userEmail')
     }
-    console.log(sessionUserData)
+    //console.log(sessionUserData)
     
     if (sessionUserData.id == null || sessionUserData.id == "undefined") {
       navigate('/login');
