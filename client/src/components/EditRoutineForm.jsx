@@ -155,7 +155,7 @@ const EditRoutineForm = () => {
                     </Col>
                     <Col xs={6}>
                         <Form.Group className="mb-3" controlId="formRange">
-                            <Form.Label>Priority</Form.Label>
+                            <Form.Label>Priority ({formik.values.priority})</Form.Label>
                             <Form.Range 
                                 value={formik.values.priority}
                                 onChange={formik.handleChange}
