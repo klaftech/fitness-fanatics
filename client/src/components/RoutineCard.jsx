@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
 import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
 
-const RoutineCard = ({ routine }) => {
+const RoutineCard = ({ routine, handleRoutineDelete }) => {
+    
     const handleButtonClick = () => {
         console.log('button clicked');
         //alert('button clicked');
@@ -71,7 +72,7 @@ const RoutineCard = ({ routine }) => {
                 <Card.Text className="d-flex justify-content-center mt-3">
                     <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Edit Exercise" href={"edit-routine/"+routine.id} />
                     &nbsp;&nbsp;&nbsp;
-                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Remove" onClick={handleButtonClick}/>
+                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Remove" onClick={()=>handleRoutineDelete(routine.id)}/>
                 </Card.Text>
             </Card.Body>
         </Card>
