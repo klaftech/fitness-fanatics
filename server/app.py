@@ -103,17 +103,21 @@ class Account(Resource):
             return make_response({"error": "Could not update account"}, 500)
 
 class RoutineItems(Resource):
-    ## TODO: add validation. either with @before_request or to each method
-        
     def get(self):
-        routine = [routine.to_dict() for routine in RoutineItem.query.all()]
+        user_id = session.get('user_id')
+        if not user_id:
+            return make_response({"error": "User not logged in"}, 401)
+        routine = [routine.to_dict(rules=('-user',)) for routine in RoutineItem.query.filter(RoutineItem.user_id == user_id).all()]
         return make_response(routine, 200)
     
     def post(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return make_response({"error": "User not logged in"}, 401)
         data = request.get_json()
         try:
             new_record = RoutineItem(
-                user_id = data['user_id'],
+                user_id = user_id,
                 exercise_id = data['exercise_id'],
                 initial_weight = data['initial_weight'],
                 current_weight = data['current_weight'],
