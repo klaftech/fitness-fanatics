@@ -161,7 +161,7 @@ const EditRoutineForm = () => {
                                 onChange={formik.handleChange}
                                 //isInvalid={!!formik.errors.priority}
                                 name={"priority"}
-                                min={0}
+                                min={1}
                                 max={10}
                             />
                             <Form.Text className="text-muted">
