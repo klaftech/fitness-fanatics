@@ -18,31 +18,28 @@
 
 ## Setup
 
-1. Clone the repository:
-git clone <repository-url>
-cd <repository-folder>
+1. Clone Repository:  
+`$ git clone <repository-url> && cd $_`
 
-2. Install Python
-pipenv install
-pipenv shell
+2. Create Python Environment:  
+`$ pipenv install && pipenv shell`
 
-3. Set up the database
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
+3. Initialize & Seed the SQLite3 Database:  
+`$ flask db init`   
+`$ flask db migrate -m "initial migration"`  
+`$ flask db upgrade head`  
+`$ python server/seed.py`
 
-4. Set up the front end
-navigate to the client directory:
-cd client
+4. Install Node dependencies:  
+`$ npm install --prefix client`
 
-5. Install Node.js and run
-npm install
-npm run dev
+5. Launch development environment   
+`$ honcho start -f Procfile.dev`
 
 
 ## Walkthrough
-![Fitness Fanatics Walkthrough 1](<client/src/assets/Fitfanatics video1.gif>)
+![Fitness Fanatics Walkthrough 1](<demo/Fitfanatics video1.gif>)
 
-![Fitness Fanatics Walkthrough 2](<client/src/assets/Fitfanatics video2.gif>)
+![Fitness Fanatics Walkthrough 2](<demo/Fitfanatics video2.gif>)
 
-![Fitness Fanatics Walkthrough 3](<client/src/assets/Fitfanatics video3.gif>)
+![Fitness Fanatics Walkthrough 3](<demo/Fitfanatics video3.gif>)
