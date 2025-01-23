@@ -8,7 +8,7 @@ import Account from './Account.jsx'
 import LoggedInContainer from './LoggedInContainer.jsx'
 import RoutineContainer from './RoutineContainer.jsx';
 import EditRoutineForm from './EditRoutineForm.jsx';
-import ComingSoon from './ComingSoon.jsx'
+import ExerciseContainer from './ExerciseContainer.jsx'
 import RedirectToIndex from './RedirectToIndex.jsx';
 
 import '../assets/css/theme.css';
@@ -51,7 +51,7 @@ function App() {
         <Route index element={<LoggedInContainer userData={userData}><RoutineContainer /></LoggedInContainer>} />
         <Route path="/account" element={<LoggedInContainer userData={userData}><Account /></LoggedInContainer>} />
         <Route path="/edit-routine/:id" element={<LoggedInContainer userData={userData}><EditRoutineForm /></LoggedInContainer>} />
-        <Route path="/exercises" element={<LoggedInContainer userData={userData}><ComingSoon endpoint={"exercises"} /></LoggedInContainer>} />
+        <Route path="/exercises" element={<LoggedInContainer userData={userData}><ExerciseContainer userData={userData}/></LoggedInContainer>} />
         <Route path="/login" element={<Login userData={userData} setUserData={setUserData} />} />
         <Route path="/logout" element={<Logout handleLogout={handleLogout} />} />
         <Route path="/signup" element={<Register />} />
