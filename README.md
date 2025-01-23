@@ -18,24 +18,21 @@
 
 ## Setup
 
-1. Clone Repository:
+1. Clone Repository:  
 `$ git clone <repository-url> && cd $_`
 
 2. Create Python Environment:  
 `$ pipenv install && pipenv shell`
 
-3. Set up the database
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
+3. Initialize & Seed the SQLite3 Database:  
+`$ flask db init`   
+`$ flask db migrate -m "initial migration"`  
+`$ flask db upgrade head`  
+`$ python server/seed.py`
 
-4. Set up the front end
-navigate to the client directory:
-cd client
-
-5. Install Node.js and run
-npm install
-npm run dev
+4. Install Node dependencies:  
+`$ npm install --prefix client`
+`$ npm run dev --prefix client`
 
 
 ## Walkthrough
