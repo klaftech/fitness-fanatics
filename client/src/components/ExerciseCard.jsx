@@ -36,9 +36,6 @@ const ExerciseCard = ({ exercise, userData }) => {
         .then((data) => {
             navigate('/edit-routine/'+data.id)
         })
-        //.catch(error => setError(error))
-        //console.log('button clicked');
-        //alert('button clicked');
     };
 
     return (

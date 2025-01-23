@@ -11,7 +11,6 @@ const ExerciseContainer = ({ userData }) => {
             .then((response) => {
                 if(!response.ok){
                     throw new Error('Failed to fetch exercises');
-                    //setErrors(response.error)
                 }
                 return response.json()
             })
@@ -30,7 +29,7 @@ const ExerciseContainer = ({ userData }) => {
 
     return (
         <div style={{'margin':'2%'}}>
-            <ExerciseList exercises={exercises} userData={userData}/*handleRoutineDelete={handleRemove}*/ />
+            <ExerciseList exercises={exercises} userData={userData} />
         </div>
     );
 }
