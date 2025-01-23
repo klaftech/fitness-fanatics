@@ -236,3 +236,36 @@ button:hover {
     margin: 0; /* Ensure there's no extra margin */
     padding: 0; /* Ensure there's no extra padding */
 }
+
+/* ExerciseCard Styles */
+
+
+.exercise-card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.exercise-title {
+    font-family: 'Raleway', sans-serif; /* Use a font that looks athletic */
+    font-size: 2rem; /* Make it larger */
+    color: var(--accent-color); /* Use a fun accent color */
+    font-weight: bold;
+    display: inline-block;
+}
+
+.exercise-title {
+    font-family: 'Raleway', sans-serif; /* Use an athletic-looking font */
+    font-size: 2.5rem; /* Make it larger for emphasis */
+    color: var(--primary-color); /* Use a theme color for visual appeal */
+    font-weight: 800; /* Increase the weight for a bold, strong look */
+    text-transform: uppercase; /* Make the text uppercase for impact */
+    letter-spacing: 0.05em; /* Slightly increase letter spacing for style */
+    margin: 0; /* Ensure there's no extra margin */
+    padding: 0; /* Ensure there's no extra padding */
+}
