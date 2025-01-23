@@ -18,11 +18,10 @@
 
 ## Setup
 
-1. Clone the repository:
-git clone <repository-url>
-cd <repository-folder>
+1. Clone Repository:
+`$ git clone <repository-url> && cd $_`
 
-2. Install Python 
+2. Create Python Environment:  
 `$ pipenv install && pipenv shell`
 
 3. Set up the database
