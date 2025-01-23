@@ -1,0 +1,42 @@
+import React from 'react';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import ActionButton from './ActionButton.jsx';
+import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
+
+const ExerciseCard = ({ exercise, handleRoutineItemCreation }) => {
+    
+    const handleButtonClick = () => {
+        console.log('button clicked');
+        //alert('button clicked');
+    };
+
+    return (
+        <Card className="exercise-card mb-3" style={{ width: '18rem' }}>
+            {exercise.image ? (
+                <Card.Img variant="top" src={exercise.image} alt={`${exercise.name} image`} />
+            ) : null}
+            <Card.Body>
+                <Card.Title>{exercise.name || "Exercise_Name"}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    {exercise.muscle_group}
+                </Card.Subtitle>
+                <ListGroup className="list-group-flush">
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Difficulty Level</div>
+                        <Badge bg="danger" pill>
+                            {exercise.difficulty_level || "N/A"}
+                        </Badge>
+                    </ListGroup.Item>
+                </ListGroup>
+                <Card.Text className="d-flex justify-content-center mt-3">
+                    <ActionButton style={{ backgroundColor: 'var(--primary-color)', color: 'white' }} title="Add to Routine" onClick={()=>handleRoutineItemCreation(exercise.id)}/>
+                </Card.Text>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export default ExerciseCard;
