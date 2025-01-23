@@ -138,14 +138,23 @@ class RoutineItemByID(Resource):
     
     @classmethod
     def find_model_by_id(cls, id):
-        return RoutineItem.query.get_or_404(id)
-    
+        #return RoutineItem.query.get_or_404(id)
+        model = RoutineItem.query.filter_by(id=id).first()
+        if model:
+            return model
+        else:
+            return False
+
     def get(self, id):
         model = self.__class__.find_model_by_id(id)
+        if not model:
+            return make_response({"error": f"Model ID: {id} not found"}, 404)
         return make_response(model.to_dict(), 200)
     
     def patch(self, id):
         model = self.__class__.find_model_by_id(id)
+        if not model:
+            return make_response({"error": f"Model ID: {id} not found"}, 404)
         data = request.get_json()
         try:
             for attr,value in data.items():
@@ -157,6 +166,8 @@ class RoutineItemByID(Resource):
     
     def delete(self, id):
         model = self.__class__.find_model_by_id(id)
+        if not model:
+            return make_response({"error": f"Model ID: {id} not found"}, 404)
         db.session.delete(model)
         db.session.commit()
         return make_response("", 204)
