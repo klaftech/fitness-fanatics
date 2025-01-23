@@ -32,7 +32,9 @@
 
 4. Install Node dependencies:  
 `$ npm install --prefix client`
-`$ npm run dev --prefix client`
+
+5. Launch development environment
+`$ honcho start -f Procfile.dev`
 
 
 ## Walkthrough
