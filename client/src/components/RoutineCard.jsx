@@ -23,7 +23,7 @@ const RoutineCard = ({ routine, handleRoutineDelete }) => {
             <Card.Body>
                 <Card.Title>{routine.exercise.name || "Exercise_Name"}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
-                    {days[routine.day_of_the_week]} - {routine.exercise.muscle_group}
+                    {routine.exercise.muscle_group} ({days[routine.day_of_the_week]})
                 </Card.Subtitle>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item className="d-flex justify-content-between align-items-start">

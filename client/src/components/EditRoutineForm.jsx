@@ -1,29 +1,34 @@
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-import { useFormik } from "formik";
-import * as yup from "yup";
 
 const EditRoutineForm = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
     const [routine, setRoutine] = useState([{}]);
+    const [errors, setErrors] = useState(false);
     
     useEffect(() => {
         fetch("/api/routines/"+id)
-        .then((res) => res.json())
+        .then((res) => {
+            if(!res.ok){
+                setErrors("Error: Failed to load the requested resource. ID: "+id)
+                console.log("Error: "+res.status)
+            }
+            return res.json()
+        })
         .then((data) => {
             setRoutine(data);
-            //console.log(data);
-        });
+        })
+        .catch(error => console.log(error));
     }, []);
 
     const formSchema = yup.object().shape({
@@ -115,6 +120,9 @@ const EditRoutineForm = () => {
         },
     });
     
+    if(!routine) return <p>Loading Routine Data...</p>
+    if(errors) return <p>{errors}</p>
+
     return (
         <Container>
             <Form noValidate onSubmit={formik.handleSubmit} >
