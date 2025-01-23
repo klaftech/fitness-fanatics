@@ -5,7 +5,7 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import ActionButton from './ActionButton.jsx';
 import { useNavigate } from 'react-router-dom';
-import '../assets/css/theme.css'; // Ensure the path to your theme.css is correct
+import '../assets/css/theme.css';
 
 const ExerciseCard = ({ exercise, userData }) => {
     const navigate = useNavigate();

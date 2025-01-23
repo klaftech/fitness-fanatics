@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 function Account() {
   const [userData, setUserData] = useState({
@@ -11,7 +11,7 @@ function Account() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const navigate = useNavigate(); // Use the useNavigate hook
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     fetch('/api/account', {
@@ -63,7 +63,7 @@ function Account() {
   };
 
   const handleReturnToDashboard = () => {
-    navigate('/'); // Navigate to the dashboard
+    navigate('/'); 
   };
 
   return (
