@@ -18,63 +18,53 @@ const RoutineCard = ({ routine }) => {
         <Card className="routine-card mb-3" style={{ width: '18rem' }}>
             {routine.exercise.image ? (
                 <Card.Img variant="top" src={routine.exercise.image} alt={`${routine.exercise.name} image`} />
-            ) : (
-                ""
-            )}
+            ) : null}
             <Card.Body>
-                <Card.Title>{routine.exercise.name ? routine.exercise.name : "Exercise_Name"}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{days[routine.day_of_the_week]} - {routine.exercise.muscle_group}</Card.Subtitle>
+                <Card.Title>{routine.exercise.name || "Exercise_Name"}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    {days[routine.day_of_the_week]} - {routine.exercise.muscle_group}
+                </Card.Subtitle>
                 <ListGroup className="list-group-flush">
-                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                            Difficulty Level
-                        </div>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Difficulty Level</div>
                         <Badge bg="danger" pill>
-                            {routine.exercise.difficulty_level ? routine.exercise.difficulty_level : "N/A"}
+                            {routine.exercise.difficulty_level || "N/A"}
                         </Badge>
                     </ListGroup.Item>
-                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                            Priority
-                        </div>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Priority</div>
                         <Badge bg="warning" pill>
-                          {routine.priority}
+                            {routine.priority}
                         </Badge>
                     </ListGroup.Item>
-                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                            Weight
-                        </div>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Weight</div>
                         <Badge bg="success" pill>
-                          {routine.current_weight}
+                            {routine.current_weight}
                         </Badge>
                         &nbsp;
                         <Badge bg="primary" pill>
-                          {routine.initial_weight}
+                            {routine.initial_weight}
                         </Badge>
                     </ListGroup.Item>
-                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                            Reps
-                        </div>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Reps</div>
                         <Badge bg="success" pill>
-                          {routine.current_reps}
+                            {routine.current_reps}
                         </Badge>
                         &nbsp;
                         <Badge bg="primary" pill>
-                          {routine.initial_reps}
+                            {routine.initial_reps}
                         </Badge>
                     </ListGroup.Item>
-                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                            Sets
-                        </div>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                        <div className="ms-2 me-auto">Sets</div>
                         <Badge bg="success" pill>
-                          {routine.current_sets}
+                            {routine.current_sets}
                         </Badge>
                         &nbsp;
                         <Badge bg="primary" pill>
-                          {routine.initial_sets}
+                            {routine.initial_sets}
                         </Badge>
                     </ListGroup.Item>
                 </ListGroup>
