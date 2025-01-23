@@ -160,6 +160,13 @@ class RoutineItemByID(Resource):
         db.session.delete(model)
         db.session.commit()
         return make_response("", 204)
+
+
+class Exercises(Resource):
+    
+    def get(self):
+        exercises = [exercise.to_dict(rules=('-routines',)) for exercise in Exercise.query.all()]
+        return make_response(exercises, 200)
     
 
 api.add_resource(Register, '/api/register')
@@ -168,6 +175,7 @@ api.add_resource(Logout, '/api/logout')
 api.add_resource(RoutineItems, '/api/routines')
 api.add_resource(RoutineItemByID, '/api/routines/<int:id>')
 api.add_resource(Account, '/api/account')
+api.add_resource(Exercises, '/api/exercises')
 
 
 
