@@ -24,9 +24,14 @@ function Login({ userData, setUserData }) {
       })
     .then(response => response.json())
     .then(data => {
+        if (data.error) {
+            setError(data.error)
+        }
+        else {
         localStorage.setItem('userName', data.name);
         localStorage.setItem('userEmail', data.email)
         localStorage.setItem('userId', data.id)
+        
 
         const sessionUserData = {
           id: data.id,
@@ -36,6 +41,7 @@ function Login({ userData, setUserData }) {
         setUserData(sessionUserData)
 
         navigate('/');
+        }
     })
     .catch(error => setError(error))
   };
