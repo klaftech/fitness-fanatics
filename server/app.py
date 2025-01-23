@@ -116,11 +116,11 @@ class RoutineItems(Resource):
                 user_id = data['user_id'],
                 exercise_id = data['exercise_id'],
                 initial_weight = data['initial_weight'],
-                current_weight = 1,
+                current_weight = data['current_weight'],
                 initial_reps = data['initial_reps'],
-                current_reps = 1,
+                current_reps = data['current_reps'],
                 initial_sets = data['initial_sets'],
-                current_sets = 1,
+                current_sets = data['current_sets'],
                 priority = data['priority'],
                 day_of_the_week = data['day_of_the_week']
             )
